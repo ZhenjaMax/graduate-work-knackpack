@@ -38,13 +38,11 @@ public final class AlgorithmKnapsackDynProg extends AlgorithmKnapsack {
 		int i = N;
 		int w = C;
 		while(matrix.get(i).get(w) != 0) {
-			if(matrix.get(i-1).get(w) == matrix.get(i).get(w)) {
-				i--;
-			} else {
+			if(matrix.get(i-1).get(w) != matrix.get(i).get(w)) {
 				knapsack.items.add(items.get(i-1));
 				w -= knapsack.items.get(knapsack.items.size()-1).getWeight();
-				i--;
 			}
+			i--;
 		}
 		Collections.reverse(knapsack.items);
 	}

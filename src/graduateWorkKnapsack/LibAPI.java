@@ -46,6 +46,7 @@ public class LibAPI {
 		Date date1 =  new Date(), date2;
 
 		algorithm.run(knapsack, items);
+		
 		if(isTimeTest) {
 			date2 = new Date();
 			long diffMilliseconds = date2.getTime() - date1.getTime();
