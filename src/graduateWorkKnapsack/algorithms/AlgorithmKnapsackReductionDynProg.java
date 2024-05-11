@@ -2,6 +2,7 @@ package graduateWorkKnapsack.algorithms;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import graduateWorkKnapsack.elements.Item;
 import graduateWorkKnapsack.elements.Knapsack;
@@ -45,10 +46,6 @@ public final class AlgorithmKnapsackReductionDynProg extends AlgorithmKnapsack {
 		
 	}
 	
-	private ArrayList<ArrayList<Integer>> getDynProgSolutionTSP(ArrayList<ArrayList<Float>> matrixTSP) {
-		
-	}
-	
 	class ItemMatrixTSP {
 		int i, j;
 		
@@ -80,7 +77,9 @@ public final class AlgorithmKnapsackReductionDynProg extends AlgorithmKnapsack {
 	@Override
 	public void run(Knapsack knapsack, ArrayList<Item> items) {
 		ArrayList<ArrayList<Float>> matrixTSP = this.buildMatrixForTSP(knapsack, items);
-		ArrayList<ArrayList<Integer>> solutionTSP = this.getDynProgSolutionTSP(matrixTSP);
+		AlgorithmTSPDynProg tsp = new AlgorithmTSPDynProg(0, matrixTSP);
+		tsp.findSolution();
+		ArrayList<ArrayList<Integer>> solutionTSP = tsp.tourMatrix;
 		this.convertSolutionToKP(matrixTSP, solutionTSP, knapsack);
 	}
 }
