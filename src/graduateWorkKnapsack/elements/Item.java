@@ -2,9 +2,9 @@ package graduateWorkKnapsack.elements;
 
 public class Item {
 	private int weight;
-    private int value;
+    private float value;
 	
-	public Item(int weight, int value) {
+	public Item(int weight, float value) {
         this.weight = weight;
         this.value = value;
     }
@@ -13,7 +13,7 @@ public class Item {
         return this.weight;
     }
 
-    public int getValue() {
+    public float getValue() {
         return this.value;
     }
 }

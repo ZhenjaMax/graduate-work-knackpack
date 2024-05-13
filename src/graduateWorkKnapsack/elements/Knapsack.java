@@ -15,8 +15,8 @@ public class Knapsack {
         return this.capacity;
     }
 	
-	public int getTotalValue() {
-		int total = 0;
+	public float getTotalValue() {
+		float total = 0;
 		for(Item item: this.items) {
 			total += item.getValue();
 		}

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import graduateWorkKnapsack.elements.Item;
 import graduateWorkKnapsack.elements.Knapsack;
 
-public final class AlgorithmKnapsackReductionDynProg extends AlgorithmKnapsackReduction {		
+public final class AlgorithmKnapsackReductionBruteForce extends AlgorithmKnapsackReduction {
 	@Override
 	public void run(Knapsack knapsack, ArrayList<Item> items) {
 		ArrayList<ArrayList<Float>> matrixTSP = this.buildMatrixForTSP(knapsack, items);
-		AlgorithmTSPDynProg tsp = new AlgorithmTSPDynProg(0, matrixTSP);
+		AlgorithmTSPBruteForce tsp = new AlgorithmTSPBruteForce(0, matrixTSP);
 		tsp.run();
 		ArrayList<ArrayList<Integer>> solutionTSP = tsp.tourMatrix;
 		for(int i = 0; i < matrixTSP.size(); i++) {

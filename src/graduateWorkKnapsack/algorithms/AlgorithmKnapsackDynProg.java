@@ -15,19 +15,19 @@ public final class AlgorithmKnapsackDynProg extends AlgorithmKnapsack {
 		if((C == 0) || (N == 0)) {
 			return;
 		}
-		ArrayList<ArrayList<Integer>> matrix = new ArrayList<ArrayList<Integer>>();
+		ArrayList<ArrayList<Float>> matrix = new ArrayList<ArrayList<Float>>();
 		for(int i = 0; i <= N; i++) {
-			matrix.add(new ArrayList<Integer>(Collections.nCopies(C+1, 0)));
+			matrix.add(new ArrayList<Float>(Collections.nCopies(C+1, (float) 0)));
 		}
 		
 		for(int i = 1; i <= N; i++) {
 			for(int w = 1; w <= C; w++) {
-				int prevMatrixElement = matrix.get(i-1).get(w);
+				float prevMatrixElement = matrix.get(i-1).get(w);
 				int prevW = items.get(i-1).getWeight();
 				if(w < prevW) {
 					matrix.get(i).set(w, prevMatrixElement);
 				} else {
-					int prevValue = items.get(i-1).getValue();
+					float prevValue = items.get(i-1).getValue();
 					matrix.get(i).set(w,
 						Math.max(prevMatrixElement, matrix.get(i-1).get(w-prevW) + prevValue)
 					);
@@ -35,14 +35,24 @@ public final class AlgorithmKnapsackDynProg extends AlgorithmKnapsack {
 			}
 		}
 		
+		for(int i = 0; i <= N; i++) {
+			System.out.println(matrix.get(i));
+		}
+		
 		int i = N;
 		int w = C;
-		while(matrix.get(i).get(w) != 0) {
-			if(matrix.get(i-1).get(w) != matrix.get(i).get(w)) {
+		ArrayList<Float> row = matrix.get(i);
+		float R = row.get(w);
+		
+		while(R != (float) 0) {
+			System.out.println(i + " " + w);
+			if(matrix.get(i-1).get(w) != R) {
 				knapsack.items.add(items.get(i-1));
 				w -= knapsack.items.get(knapsack.items.size()-1).getWeight();
 			}
 			i--;
+			row = matrix.get(i);
+			R = row.get(w);
 		}
 		Collections.reverse(knapsack.items);
 	}

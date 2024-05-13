@@ -17,7 +17,8 @@ public final class AlgorithmKnapsackBruteForce extends AlgorithmKnapsack {
 	
 	@Override
 	public void run(Knapsack knapsack, ArrayList<Item> items) {
-		int solution = 0, mostValue = 0;
+		int solution = 0;
+		float mostValue = 0;
 		
 		for(int i = 1; i < (int) Math.pow(2, items.size()); i++) {
 			this.packKnapsack(knapsack, items, i);
