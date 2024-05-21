@@ -1,13 +1,15 @@
-package graduateWorkKnapsack.algorithms;
+package main.java.com.github.graduateworkknapsack.algorithms;
 
 import java.util.ArrayList;
 
-import graduateWorkKnapsack.elements.Item;
-import graduateWorkKnapsack.elements.Knapsack;
+import main.java.com.github.graduateworkknapsack.elements.Item;
+import main.java.com.github.graduateworkknapsack.elements.Knapsack;
 
 public final class AlgorithmKnapsackBruteForce extends AlgorithmKnapsack {
 	private void packKnapsack(Knapsack knapsack, ArrayList<Item> items, int solution) {
 		String binaryString = Integer.toBinaryString(solution);
+		knapsack.items.clear();
+		
 		for (int j = 0; j < binaryString.length(); j++) {
             if(binaryString.charAt(j) == '1') {
             	knapsack.items.add(items.get(j + items.size() - binaryString.length()));
@@ -26,7 +28,6 @@ public final class AlgorithmKnapsackBruteForce extends AlgorithmKnapsack {
 				solution = i;
 				mostValue = knapsack.getTotalValue();
 			}
-			knapsack.items.clear();
 		}
 		
 		this.packKnapsack(knapsack, items, solution);

@@ -1,4 +1,4 @@
-package graduateWorkKnapsack;
+package main.java.com.github.graduateworkknapsack;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,24 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import graduateWorkKnapsack.elements.Item;
-import graduateWorkKnapsack.elements.Knapsack;
+import main.java.com.github.graduateworkknapsack.elements.Item;
+import main.java.com.github.graduateworkknapsack.elements.Knapsack;
+import main.java.com.github.graduateworkknapsack.util.Pair;
 
 public class FileIO {
-	private static Knapsack deserializeKnapsack(ArrayList<Float> numbers) {
-		return new Knapsack(Math.round(numbers.get(0)));
-	}
-	
 	// Пары вес-стоимость
-	private static ArrayList<Item> deserializeItems(ArrayList<Float> numbers) {
-		ArrayList<Item> items = new ArrayList<>();
-		for(int i = 1; i < numbers.size(); i += 2) {
-			items.add(new Item(Math.round(numbers.get(i)), numbers.get(i+1)));
-		}
-		return items;
-	}
-	
-	public static Knapsack readDataKP(String filename) {
+	public static Pair<Knapsack, ArrayList<Item>> readDataKP(String filename) {
 		ArrayList<Float> numbers = new ArrayList<>();
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -48,10 +37,13 @@ public class FileIO {
             System.exit(1);
         }
 		
-		Knapsack knapsack = FileIO.deserializeKnapsack(numbers);
-		ArrayList<Item> items = FileIO.deserializeItems(numbers);
-		knapsack.items = items;
-		return knapsack;
+		Knapsack knapsack = new Knapsack(Math.round(numbers.get(0)));
+		ArrayList<Item> items = new ArrayList<>();
+		for(int i = 1; i < numbers.size(); i += 2) {
+			items.add(new Item(Math.round(numbers.get(i)), numbers.get(i+1)));
+		}
+		
+		return new Pair<Knapsack, ArrayList<Item>>(knapsack, items);
 	}
 	
 	// Суммарный вес, стоимость, количество объектов

@@ -1,4 +1,4 @@
-package graduateWorkKnapsack.elements;
+package main.java.com.github.graduateworkknapsack.elements;
 
 public class ItemTSP {
 	public int i, j, weight, amount;
@@ -12,7 +12,7 @@ public class ItemTSP {
 		this.amount = 1;
 	}
 	
-	public static Item toItemKP(ItemTSP item) {
+	public static Item convertToItemKP(ItemTSP item) {
 		return new Item(item.weight, item.value);
 	}
 }

@@ -1,4 +1,4 @@
-package graduateWorkKnapsack.elements;
+package main.java.com.github.graduateworkknapsack.elements;
 
 public class Item {
 	private int weight;

@@ -1,9 +1,10 @@
-package graduateWorkKnapsack.elements;
+package main.java.com.github.graduateworkknapsack.elements;
 
 import java.util.ArrayList;
 
 public class Knapsack {
 	private int capacity;
+	private long timeUs = 0;
 	public ArrayList<Item> items;
 	
 	public Knapsack(int capacity) {
@@ -33,5 +34,13 @@ public class Knapsack {
 	
 	public boolean isPacked() {
 		return this.capacity >= this.getTotalWeight();
+	}
+	
+	public void setTimeUs(long timeUs) {
+		this.timeUs = timeUs;
+	}
+	
+	public long getTimeUs() {
+		return this.timeUs;
 	}
 }
