@@ -47,13 +47,13 @@ public class AlgorithmTSPDynProg extends AlgorithmTSP {
             	this.minTourCost = this.dp[finalMask][i] + this.distance[i][this.startNode];
             	this.minTour.clear();
                 // this.minTour.add(startNode);
-            	this.reconstructPath(this.parent, finalMask, i);
+            	this.reconstructPath(finalMask, i);
             	this.minTour.add(this.startNode);
             }
         }
     }
 
-    private void reconstructPath(int[][] parent, int mask, int current) {
+    private void reconstructPath(int mask, int current) {
         int stack[] = new int[this.nodesAmount];
         int top = 0;
         stack[top] = current;
