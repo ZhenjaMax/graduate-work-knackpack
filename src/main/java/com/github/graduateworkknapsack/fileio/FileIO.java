@@ -1,4 +1,4 @@
-package main.java.com.github.graduateworkknapsack;
+package main.java.com.github.graduateworkknapsack.fileio;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,7 +18,7 @@ public class FileIO {
 		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 			String line = br.readLine();
             if (line == null) {
-            	throw new IOException("File is empty or does not contain any numbers.");
+            	throw new IOException("FileIO error: file is empty or does not contain any numbers.");
             }
             numbers.add(Float.parseFloat(line));
             
@@ -29,11 +29,15 @@ public class FileIO {
                 		numbers.add(Float.parseFloat(tokens[i]));
                 	}
                 } else {
-                    throw new IOException("Invalid line format: " + line);
+                    throw new IOException("FileIO error: invalid line format: " + line);
                 }
             }
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Error reading file: " + e.getMessage());
+        	if(e instanceof NumberFormatException) {
+        		System.err.println("FileIO error: invalid file format.");
+        	}
+            System.err.println(e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
 		
@@ -50,7 +54,7 @@ public class FileIO {
 	// Перечисление объектов пары вес-стоимость
     public static void saveResultKP(String output, Knapsack knapsack) {
         try (FileWriter writer = new FileWriter(output)) {
-        	writer.write(knapsack.getTotalWeight() + " " + knapsack.getTotalValue() + " " + knapsack.items.size() + "\n");
+        	writer.write(knapsack.getCapacity() + "\n");
         	for(Item item: knapsack.items) {
         		writer.write(item.getWeight() + " " + item.getValue() + "\n");
         	}

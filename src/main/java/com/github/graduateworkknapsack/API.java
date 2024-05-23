@@ -58,26 +58,49 @@ public final class API {
 		API.run(knapsack, items, new AlgorithmKnapsackReductionDynProg());
 	}
 	
+	// ================
+	
 	public static Pair<Knapsack, ArrayList<Item>> generateRandomKP(
 		int capacity,
 		int itemsAmount,
 		int weightMin, int weightMax,
 		float valueMin, float valueMax
 	) {
-		try {
-			if((capacity < 1) || (weightMin < 1) || (valueMin <= 0) || (weightMax-weightMin < 0) || (valueMax-valueMin < 0)) {
-				throw new Exception("Invalid values to generate random KP!");
+		if(
+			(capacity < 1) ||
+			(itemsAmount < 1) ||
+			(weightMin < 1) || 
+			(valueMin <= 0) || 
+			(weightMax-weightMin < 0) || 
+			(valueMax-valueMin < 0)
+		) {
+			String err = "Error: invalid values to generate random KP.\n";
+			if(capacity < 1) {
+				err += ("capacity = " + capacity + ", must be integer greater than 0.\n");
 			}
-		} catch (Exception e) {
-			System.err.println("Error: " + e.getMessage());
-            System.exit(1);
+			if(itemsAmount < 1) {
+				err += ("itemsAmount = " + itemsAmount + ", must be integer greater than 0.\n");
+			}
+			if(weightMin < 1) {
+				err += ("weightMin = " + itemsAmount + ", must be integer greater than 0.\n");
+			}
+			if(valueMin <= 0) {
+				err += ("valueMin = " + itemsAmount + ", must be float greater than 0.\n");
+			}
+			if(weightMax-weightMin < 0) {
+				err += ("weightMax = " + itemsAmount + ", must be not less than weightMin = " + weightMin + ".\n");
+			}
+			if(valueMax-valueMin < 0) {
+				err += ("valueMax = " + itemsAmount + ", must be not less than valueMin = " + valueMin + ".\n");
+			}
+			throw new IllegalArgumentException(err);
 		}
 
 		Knapsack knapsack = new Knapsack(capacity);
 		ArrayList<Item> items = new ArrayList<>();
 		for(int i = 0; i < itemsAmount; i++) {
-			int weight = (int) Math.floor(Math.random()*(weightMax-weightMin+1));
-			float value = (int) Math.floor(Math.random()*(valueMax-valueMin+1));
+			int weight = weightMin + (int) Math.floor(Math.random()*(weightMax-weightMin+1));
+			float value = valueMin + (int) Math.floor(Math.random()*(valueMax-valueMin+1));
 			items.add(new Item(weight, value));
 		}
 		return new Pair<Knapsack, ArrayList<Item>>(knapsack, items);

@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>graduate-work-knapsack</groupId>
+  <artifactId>graduate-work-knapsack</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>graduate-work-knapsack</name>
+  <description>Bachelor's thesis on the topic "Development of a library for solving the NP-hard Knapsack problem" by a student of St. Petersburg Electrotechnical University (ETU)</description>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <url>https://github.com/ZhenjaMax/graduate-work-knapsack</url>
+  <organization>
+  	<name>SPbETU LETI, MOEVM Chair</name>
+  	<url>https://se.moevm.info/doku.php</url>
+  </organization>
+</project>

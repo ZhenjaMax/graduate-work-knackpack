@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 import main.java.com.github.graduateworkknapsack.API;
-import main.java.com.github.graduateworkknapsack.FileIO;
 import main.java.com.github.graduateworkknapsack.elements.Item;
 import main.java.com.github.graduateworkknapsack.elements.Knapsack;
+import main.java.com.github.graduateworkknapsack.fileio.FileIO;
 import main.java.com.github.graduateworkknapsack.util.Pair;
 
 public class Main {
 	public static void main(String[] args) {		
-		String input = "file.txt";
+		String input = "input.txt";
 		String output = "output.txt";
 		
 		System.out.println("Working Directory = " + System.getProperty("user.dir"));
