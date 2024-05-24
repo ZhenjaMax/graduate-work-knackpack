@@ -1,32 +1,22 @@
-import java.util.ArrayList;
-
-import main.java.com.github.graduateworkknapsack.API;
-import main.java.com.github.graduateworkknapsack.elements.Item;
-import main.java.com.github.graduateworkknapsack.elements.Knapsack;
-import main.java.com.github.graduateworkknapsack.fileio.FileIO;
-import main.java.com.github.graduateworkknapsack.util.Pair;
+import main.java.com.github.graduateworkknapsack.algorithms.AlgorithmTSPBnB;
+import main.java.com.github.graduateworkknapsack.util.Constant;
 
 public class Main {
 	public static void main(String[] args) {		
-		String input = "input.txt";
-		String output = "output.txt";
+		//String input = "input.txt";
+		//String output = "output.txt";
 		
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
-		Pair<Knapsack, ArrayList<Item>> pair = FileIO.readDataKP(input);
-		API.reductionDynamicProgramming(pair);
-		System.out.println("Time passed, us: " + pair.t.getTimeUs());
-		FileIO.saveResultKP(output, pair.t);
-		
-		/*
-		float[][] distance = {
-			{Constant.INFINITY, 15, 21, 24},
-			{27, Constant.INFINITY, 7, 30},
-			{32, 23, Constant.INFINITY, 1},
-			{25, 3, 20, Constant.INFINITY},
+		float[][] matrix = {
+			{Constant.INFINITY, 27, 43, 16, 30, 26},
+			{7, Constant.INFINITY, 16, 1, 30, 25},
+			{20, 13, Constant.INFINITY, 35, 5, 0},
+			{21, 16, 25, Constant.INFINITY, 18, 18},
+			{12, 46, 27, 48, Constant.INFINITY, 5},
+			{23, 5, 5, 9, 5, Constant.INFINITY},
 		};
-		AlgorithmTSPDynProg tsp = new AlgorithmTSPDynProg(2, distance);
+		AlgorithmTSPBnB tsp = new AlgorithmTSPBnB(0, matrix);
 		tsp.run();
-		System.out.println("DP: " + tsp.minTour);
-		*/
+		System.out.println(tsp.minTourCost);
+		System.out.println(tsp.minTour);
 	}
 }

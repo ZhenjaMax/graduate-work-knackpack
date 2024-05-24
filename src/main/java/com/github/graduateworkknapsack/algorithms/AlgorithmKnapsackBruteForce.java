@@ -6,7 +6,7 @@ import main.java.com.github.graduateworkknapsack.elements.Item;
 import main.java.com.github.graduateworkknapsack.elements.Knapsack;
 
 public final class AlgorithmKnapsackBruteForce extends AlgorithmKnapsack {
-	private void packKnapsack(Knapsack knapsack, ArrayList<Item> items, int solution) {
+	private void packKnapsackFromSolutionInteger(Knapsack knapsack, ArrayList<Item> items, int solution) {
 		String binaryString = Integer.toBinaryString(solution);
 		knapsack.items.clear();
 		
@@ -23,13 +23,13 @@ public final class AlgorithmKnapsackBruteForce extends AlgorithmKnapsack {
 		float mostValue = 0;
 		
 		for(int i = 1; i < (int) Math.pow(2, items.size()); i++) {
-			this.packKnapsack(knapsack, items, i);
+			this.packKnapsackFromSolutionInteger(knapsack, items, i);
 			if(knapsack.isPacked() && knapsack.getTotalValue() > mostValue) {
 				solution = i;
 				mostValue = knapsack.getTotalValue();
 			}
 		}
 		
-		this.packKnapsack(knapsack, items, solution);
+		this.packKnapsackFromSolutionInteger(knapsack, items, solution);
 	}
 }

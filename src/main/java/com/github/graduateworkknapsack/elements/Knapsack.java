@@ -81,8 +81,9 @@ public class Knapsack {
 	
 	@Override
 	public String toString() {
-	    String output = ("Knapsack capacity: " + this.capacity + "\n");
-	    output += ("Items amount: " + this.items.size() + "\n");
+	    String output = ("Knapsack capacity:\t" + this.capacity + "\n");
+	    output += ("Items amount:\t\t" + this.items.size() + "\n");
+	    output += ("Total weight and value:  " + this.getTotalWeight() + ", " + this.getTotalValue() + "\n");
 	    if(this.items.size() != 0) {
 	    	output += ("Items list:" + "\n");
 	    	for(Item item: this.items) {
