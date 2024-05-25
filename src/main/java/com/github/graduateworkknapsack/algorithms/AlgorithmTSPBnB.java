@@ -23,18 +23,24 @@ public class AlgorithmTSPBnB extends AlgorithmTSP {
         	first.reduce();
         	
         	boolean isPathCompleted = (first.currentPath.size() == this.nodesAmount);
-        	boolean isTooMuchCost = (bnbMinTour <= first.baseCost);
+        	boolean isMoreOrEqualMinimumCost = (first.baseCost >= bnbMinTour);
         	
-        	if(isTooMuchCost) {
+        	if(isMoreOrEqualMinimumCost) {
         		continue;
         	}
-        	if(isPathCompleted && !isTooMuchCost) {
+        	if(isPathCompleted) {
+        		if(!first.isPathFull(this.startNode)) {
+        			continue;
+        		}
         		bnbMinTour = first.baseCost;
     			solution = first;
         		continue;
         	}
         	
         	first.setPenalty();
+        	if((first.penaltyI < 0) || (first.penaltyJ < 0)) {
+        		continue;
+        	}
         	PathDataBnB second = first.clone();
         	second.adjacencyMatrix[first.penaltyI][first.penaltyJ] = Constant.INFINITY;
         	second.reduce();

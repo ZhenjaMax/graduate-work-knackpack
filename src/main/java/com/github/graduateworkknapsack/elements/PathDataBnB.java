@@ -1,6 +1,7 @@
 package main.java.com.github.graduateworkknapsack.elements;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import main.java.com.github.graduateworkknapsack.util.Constant;
 
@@ -53,8 +54,8 @@ public class PathDataBnB implements Comparable<PathDataBnB> {
 	
 	public void setPenalty() {
 		maxPenalty = -1;
-		penaltyI = 0;
-		penaltyJ = 0;
+		penaltyI = -1;
+		penaltyJ = -1;
 		
 		for(int i = 0; i < this.nodesAmount; i++) {
 			for(int j = 0; j < this.nodesAmount; j++) {
@@ -96,6 +97,18 @@ public class PathDataBnB implements Comparable<PathDataBnB> {
 				}
 			}
 		}
+	}
+	
+	// no cycles
+	public boolean isPathFull(int startNode) {
+		ArrayList<Integer> restoredPath = this.restorePath(startNode);
+		restoredPath.remove(0);
+		for(int i = 0; i < this.nodesAmount; i++) {
+			if(Collections.frequency(restoredPath, i) != 1) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public ArrayList<Integer> restorePath(int startNode) {
@@ -164,6 +177,15 @@ public class PathDataBnB implements Comparable<PathDataBnB> {
 	
 	@Override
 	public int compareTo(PathDataBnB o) {
-		return this.baseCost - o.baseCost;
+		if(this.baseCost != o.baseCost) {
+			return this.baseCost - o.baseCost;
+		}
+		if(this.currentPath.size() != o.currentPath.size()) {
+			return this.currentPath.size() - o.currentPath.size();
+		}
+		if(this != o) {
+			return -1;
+		}
+		return 0;
 	}
 }

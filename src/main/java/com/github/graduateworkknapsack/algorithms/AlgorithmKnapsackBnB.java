@@ -1,6 +1,8 @@
 package main.java.com.github.graduateworkknapsack.algorithms;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 
 import main.java.com.github.graduateworkknapsack.elements.Item;
 import main.java.com.github.graduateworkknapsack.elements.Knapsack;
@@ -21,33 +23,30 @@ public final class AlgorithmKnapsackBnB extends AlgorithmKnapsack {
 		float mostValue = 0;
 		int itemsAmount = items.size();
 		
-		ArrayList<String> packages = new ArrayList<>();
-		packages.add("");
+		Deque<String> packages = new ArrayDeque<String>();
+		packages.push("");
 		
-		for(int i = 0; i <= itemsAmount; i++) {
-			int computingPackagesSize = packages.size() / 2;
-			for(int j = 0; j < computingPackagesSize; j++) {
-				this.packKnapsackFromBinaryString(knapsack, items, packages.get(j));
-				if(!knapsack.isPacked()) {
-					packages.remove(j);
-					j--;
-					computingPackagesSize--;
-					continue;
-				}
-				
-				if(knapsack.getTotalValue() > mostValue) {
-					mostValue = knapsack.getTotalValue();
-					solution = packages.get(j);
-				}
+		
+		while(!packages.isEmpty()) {
+			String combination = packages.pop();
+			this.packKnapsackFromBinaryString(knapsack, items, combination);
+			boolean isTooMuch = !knapsack.isPacked();
+			boolean isMaxLength = (combination.length() == itemsAmount);
+			
+			if(isTooMuch) {
+				continue;
+			}
+			float totalValue = knapsack.getTotalValue();
+			if(totalValue > mostValue) {
+				mostValue = totalValue;
+				solution = combination;
+			}
+			if(isMaxLength) {
+				continue;
 			}
 			
-			int packagesSize = packages.size();
-			if(i != itemsAmount) {
-				for(int j = 0; j < packagesSize; j++) {
-					packages.add(packages.get(j) + "0");
-					packages.set(j, packages.get(j) + "1");
-				}
-			}
+			packages.push(combination + "0");
+			packages.push(combination + "1");
 		}
 
 		this.packKnapsackFromBinaryString(knapsack, items, solution);
