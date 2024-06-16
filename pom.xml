@@ -23,8 +23,6 @@
           </plugin>
       </plugins>
   </build>
-  <sourceDirectory>src/main/java</sourceDirectory>
-  <testSourceDirectory>src/test/java</testSourceDirectory>
   <url>https://github.com/ZhenjaMax/graduate-work-knapsack</url>
   <organization>
   	<name>SPbETU LETI, MOEVM Chair</name>
