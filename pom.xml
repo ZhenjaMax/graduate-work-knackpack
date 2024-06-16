@@ -2,19 +2,24 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>graduate-work-knapsack</groupId>
   <artifactId>graduate-work-knapsack</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <name>graduate-work-knapsack</name>
   <description>Bachelor's thesis on the topic "Development of a library for solving the NP-hard Knapsack problem" by a student of St. Petersburg Electrotechnical University (ETU)</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
       <resource>
-        <directory>src</directory>
+        <directory>src/main</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test</directory>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
-      </resource>
-    </resources>
+      </testResource>
+    </testResources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
