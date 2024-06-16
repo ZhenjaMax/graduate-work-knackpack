@@ -6,30 +6,25 @@
   <name>graduate-work-knapsack</name>
   <description>Bachelor's thesis on the topic "Development of a library for solving the NP-hard Knapsack problem" by a student of St. Petersburg Electrotechnical University (ETU)</description>
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>src/main</directory>
-      </resource>
-    </resources>
-    <testResources>
-      <testResource>
-        <directory>src/test</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </testResource>
-    </testResources>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <release>17</release>
-        </configuration>
-      </plugin>
-    </plugins>
+      <plugins>
+          <plugin>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.8.1</version>
+              <configuration>
+                  <release>17</release>
+              </configuration>
+          </plugin>
+          <plugin>
+              <artifactId>maven-jar-plugin</artifactId>
+              <version>3.2.0</version>
+              <configuration>
+                  <outputDirectory>build</outputDirectory>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
+  <sourceDirectory>src/main/java</sourceDirectory>
+  <testSourceDirectory>src/test/java</testSourceDirectory>
   <url>https://github.com/ZhenjaMax/graduate-work-knapsack</url>
   <organization>
   	<name>SPbETU LETI, MOEVM Chair</name>
